@@ -46,6 +46,8 @@
             <td><?=$user['name']?> </td>
             <td><?=$user['username']?> </td>
             <td><?=$user['email']?> </td>
+           <td><?="<a href = 'delete.php?id=$user[id]'>Delete</a" ?></td>
+           
         </tr>
         <?php
     }
