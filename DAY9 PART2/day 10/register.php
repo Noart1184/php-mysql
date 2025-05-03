@@ -1,14 +1,12 @@
 <?php
 include_once('config.php');
 
-if (isset($_POST['submit'])) 
-{
-
-     $name = $_POST['name'];
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
     $surname = $_POST['surname'];
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $tempPass = $_POST['password']; 
+    $tempPass = $_POST['password']; // endriti123 -> iuqwdrgbqwuidhquwduioq@#$%^&1235757
     $password = password_hash($tempPass, PASSWORD_DEFAULT);
 
     if (empty($name) || empty($surname) || empty($username) || empty($email) || empty($password)) {
