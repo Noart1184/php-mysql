@@ -15,5 +15,21 @@ if(isset($_POST['submit'])){
     if(empty($emri) || empty($username) || empty($email) || empty($password) || empty($confirmPassword)){
         echo "You have not filled in all the fields";
 }
+else{
+    $sql = "INSERT INTO users (emri, username, email, password, confirmPassword) VALUES (emri, username, email, password, confirmPassword)";
+
+    $insertsql = $conn->prepare($sql);
+    
+    $insertsql -> bindParam(':emri', $emri);
+    $insertsql -> bindParam(':username', $username);
+    $insertsql -> bindParam(':email', $email);
+    $insertsql -> bindParam(':password', $password);
+    $insertsql -> bindParam(':confirmPassword', $confirmPassword);
+
+     $insertsql-> execute();
+
+    header('Location: login.php');
+
+}
 }
 ?>
