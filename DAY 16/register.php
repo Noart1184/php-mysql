@@ -9,27 +9,26 @@ if(isset($_POST['submit'])){
     $tempPass = $_POST['password'];
     $password = password_hash($tempPass, PASSWORD_DEFAULT);
 
-    $tempCofirm = $_POST['confirm_password'];
-    $confirmPassword = password_hash($tempCofirm, PASSWORD_DEFAULT);
+    $tempConfirm = $_POST['confirm_password'];
+    $confirmPassword = password_hash($tempConfirm, PASSWORD_DEFAULT);
 
     if(empty($emri) || empty($username) || empty($email) || empty($password) || empty($confirmPassword)){
-        echo "You have not filled in all the fields";
+        echo "You have not filled all the fields.";
 }
 else{
-    $sql = "INSERT INTO users (emri, username, email, password, confirmPassword) VALUES (emri, username, email, password, confirmPassword)";
+    $sql = "INSERT INTO users (emri, username, email, password, confirm_password) values (:emri, :username, :email, :password, :confirm_password)";
 
     $insertsql = $conn->prepare($sql);
-    
-    $insertsql -> bindParam(':emri', $emri);
-    $insertsql -> bindParam(':username', $username);
-    $insertsql -> bindParam(':email', $email);
-    $insertsql -> bindParam(':password', $password);
-    $insertsql -> bindParam(':confirmPassword', $confirmPassword);
 
-     $insertsql-> execute();
+    $insertsql->bindParam(':emri' , $emri);
+    $insertsql->bindParam(':username' , $username);
+    $insertsql->bindParam(':email' , $email);
+    $insertsql->bindParam(':password' , $password);
+    $insertsql->bindParam(':confirm_password' , $confirmPassword);
 
-    header('Location: login.php');
+    $insertsql->execute();
 
+    header("Location: login.php");
 }
 }
 ?>
